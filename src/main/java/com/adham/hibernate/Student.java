@@ -1,5 +1,6 @@
 package com.adham.hibernate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,7 +8,9 @@ import jakarta.persistence.Id;
 public class Student {
     @Id
     private int rollNo;
+    @Column(name="name")
     private String sName;
+    @Column(name="age")
     private int sAge;
 
     public int getRollNo() {
