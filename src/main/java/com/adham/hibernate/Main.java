@@ -26,15 +26,29 @@ public class Main {
         l2.setModel("25");
         l2.setRam(12);
 
+        Laptop l3 = new Laptop();
+        l3.setLid(3);
+        l3.setBrand("Apple");
+        l3.setModel("Macbook A1");
+        l3.setRam(12);
+
         Alien a1 = new Alien();
-        a1.setAlien_id(13);
+        a1.setAlien_id(101);
         a1.setName("Slim");
-        a1.setTech("Java");
+        a1.setTech("Python");
+
+        Alien a2 = new Alien();
+        a2.setAlien_id(102);
+        a2.setName("Adham");
+        a2.setTech("Java");
+
+        /*Alien a3 = new Alien();
+        a3.setAlien_id(103);
+        a3.setName("Omar");
+        a3.setTech("Fast API");*/
+
         a1.setLaptops(List.of(l1,l2));
-
-
-        l1.setAlien(a1);
-        l2.setAlien(a1);
+        a2.setLaptops(List.of(l3));
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(com.adham.hibernate.Student.class)
@@ -49,18 +63,25 @@ public class Main {
         //session.merge(s1);
         session.persist(l1);
         session.persist(l2);
+        session.persist(l3);
+
         session.persist(a1);
+        session.persist(a2);
 
         //session.remove(109);
 
         transaction.commit();
 
 //        Student s2 = session.byId(Student.class).load(20007);
-        Alien a2 = session.byId(Alien.class).load(13);
 
-        System.out.println(a2);
 
         session.close();
+
+        Session session1 = sf.openSession();
+
+        Alien a5 = session1.byId(Alien.class).load(102);
+
+        session1.close();
         sf.close();
 
     }

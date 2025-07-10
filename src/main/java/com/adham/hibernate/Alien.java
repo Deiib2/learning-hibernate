@@ -1,8 +1,6 @@
 package com.adham.hibernate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class Alien {
     private int alien_id;
     private String name;
     private String tech;
-    @OneToMany
+    @OneToMany //(fetch = FetchType.EAGER)
     private List<Laptop> laptops;
 
     public int getAlien_id() {
